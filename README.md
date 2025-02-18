@@ -4,18 +4,17 @@ This project is a Flask web application designed to celebrate Valentine's Day.  
 
 ## Screenshots
 
-Ⓑ(Insert screenshots here.  Use markdown to link to the images. For example:)Ⓑ
 
-* [Homepage Screenshot](screenshot_homepage.png)
-* [Mobile View Screenshot (Telegram)](screenshot_telegram.png)
-* [Another Feature Screenshot](screenshot_feature.png)
+ ![photo_2025-02-18_17-21-31](https://github.com/user-attachments/assets/426a6a50-57ea-46e9-ae2b-de9aeb3f25d8)
+ ![photo_2025-02-18_17-22-44 (2)](https://github.com/user-attachments/assets/293fa3cc-0c0b-49da-9d61-0701fd4709c7)
+
+
 
 
 ## Project Structure
 
-Ⓑ(Insert screenshot of your project directory here.  Use markdown to link to the image. For example:)Ⓑ
 
-* [Project Directory Structure](screenshot_directory.png)
+![screenshot_directory](https://github.com/user-attachments/assets/56256d3c-1005-49bd-a366-a6c901f88f82)
 
 
 The project is structured as follows:
@@ -23,14 +22,14 @@ The project is structured as follows:
 * Ⓑapp.py:Ⓑ The main Flask application file.
 * Ⓑtemplates/:Ⓑ Contains HTML templates for rendering web pages.
 * Ⓑstatic/:Ⓑ Contains static assets such as CSS, JavaScript, and images.
-* Ⓑ(Other directories/files as needed):Ⓑ  List other significant directories and their purpose.
+
 
 ## Technologies Used
 
 * ⒷPython:Ⓑ  Backend logic and web framework.
 * ⒷFlask:Ⓑ  The lightweight and flexible web framework used.
 * ⒷHTML, CSS, JavaScript:Ⓑ Front-end technologies for creating the user interface.
-* Ⓑ(Add other technologies if used):Ⓑ  e.g.,  Databases (SQLAlchemy, MongoDB),  CSS frameworks (Bootstrap, Tailwind CSS), JavaScript frameworks (React, Vue.js).
+* Ⓑ Telegram  CSS frameworks (Bootstrap, Tailwind CSS), JavaScript frameworks (React, Vue.js).
 
 ## Features
 
@@ -38,7 +37,7 @@ The project is structured as follows:
     *  A Valentine's Day themed greeting.
     *  A simple quiz or game related to Valentine's Day.
     *  A photo gallery or slideshow.
-    *  (Add other features)
+   
 * ⒷMobile-Friendly Design:Ⓑ The application is designed to be responsive and easily viewable on mobile devices, including within the Telegram app.
 
 
