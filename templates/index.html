@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ff80ab;
+            margin: 0;
+            padding: 0;
+            font-family: 'Caveat', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+
+        #playButton {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        #playButton:hover {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 20;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-buttons button {
+            background-color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            width: 150px;
+            text-align: center;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 5;
+        }
+
+        .photo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            max-width: 80%;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-container img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin: 0 20px;
+        }
+
+        .text-container {
+            color: #d32f2f;
+            font-size: 28px;
+            text-align: center;
+            max-width: 400px;
+            line-height: 1.5;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .heart {
+                font-size: 25px;
+            }
+
+            #playButton {
+                padding: 10px 15px;
+                font-size: 14px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .nav-buttons {
+                bottom: 10%;
+                gap: 10px;
+                flex-direction: column;
+            }
+
+            .nav-buttons button {
+                font-size: 16px;
+                padding: 10px 20px;
+                width: 100%;
+            }
+
+            .photo-container {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .photo-container img {
+                max-width: 150px;
+            }
+
+            .text-container {
+                font-size: 22px;
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .heart {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container"></div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mp3">
+        Ваш браузер не поддерживает аудиофайлы.
+    </audio>
+
+    <button id="playButton">▶️ Включить музыку</button>
+
+    <div class="content-container">
+        <div class="photo-container">
+            <img src="{{ url_for('static', filename='heart.jpg') }}" alt="Фото">
+            <div class="text-container">
+                Настя, ты самая Лучшая!<br>
+                Хочу быть только с тобой<br>
+                Твои глаза прекрасны<br>
+                Люблю тебя 💓<br>
+                Дарю душу и сердце.💞
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button onclick="window.location.href='/valentine'">💓 Забрать сердце</button>
+        <button onclick="window.location.href='/collage'">🖼 Мы</button>
+    </div>
+
+    <script>
+        const music = document.getElementById('backgroundMusic');
+        const playButton = document.getElementById('playButton');
+
+        window.addEventListener('load', () => {
+            const savedTime = localStorage.getItem('savedTime');
+            const musicState = localStorage.getItem('musicState');
+
+            if (savedTime) {
+                music.currentTime = parseFloat(savedTime);
+            }
+
+            if (musicState === 'playing') {
+                music.play();
+                playButton.textContent = '⏸️ Выключить музыку';
+            }
+        });
+
+        playButton.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                playButton.textContent = '⏸️ Выключить музыку';
+                localStorage.setItem('musicState', 'playing');
+            } else {
+                music.pause();
+                playButton.textContent = '▶️ Включить музыку';
+                localStorage.setItem('musicState', 'paused');
+            }
+        });
+
+        music.addEventListener('timeupdate', () => {
+            localStorage.setItem('savedTime', music.currentTime);
+        });
+
+        const heartsContainer = document.querySelector('.hearts-container');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = Math.random() > 0.5 ? '💞' : '💘';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * (50 - 20) + 20 + 'px';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.top = '-50px';
+            heart.style.animationTimingFunction = 'linear';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>

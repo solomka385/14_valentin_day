@@ -1,0 +1,49 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+  
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  .dribbble, .twitter {
+    position: fixed;
+    display: block;
+  }
+  
+  .dribbble {
+    right: 20px;
+    bottom: 20px;
+  }
+  .dribbble img {
+    height: 28px;
+  }
+  
+  .twitter {
+    right: 64px;
+    bottom: 14px;
+  }
+  .twitter svg {
+    width: 32px;
+    height: 32px;
+    fill: #1da1f2;
+  }
+  
+  #valentines {
+    display: block;
+    margin: 0 auto;
+    max-width: 50%;
+  }
+  
+  @media (max-width: 800px) {
+    #valentines {
+      max-width: 70%;
+    }
+  }
+  
